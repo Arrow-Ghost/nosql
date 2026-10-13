@@ -295,22 +295,26 @@ function makeShapes(N: number): Record<ShapeName, Shape> {
   });
 
   mk('text', 133, [0, 0.5, 31], [0, 0.5, 0], 0, 1, (w, r) => {
+    // Portrait phones are too narrow for one line, so stack "NOT ONLY" over "SQL".
+    const portrait = innerWidth < innerHeight;
     const cv = document.createElement('canvas');
-    cv.width = 1200; cv.height = 300;
+    cv.width = 1200; cv.height = portrait ? 560 : 300;
     const ctx = cv.getContext('2d')!;
     ctx.fillStyle = '#fff';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.font = "900 230px 'Big Shoulders Display', Impact, sans-serif";
-    ctx.fillText('NOT ONLY SQL', 600, 160);
+    if (portrait) { ctx.fillText('NOT ONLY', 600, 150); ctx.fillText('SQL', 600, 400); }
+    else ctx.fillText('NOT ONLY SQL', 600, 160);
     const data = ctx.getImageData(0, 0, cv.width, cv.height).data;
     const pts: [number, number][] = [];
     for (let y = 0; y < cv.height; y += 2) for (let x = 0; x < cv.width; x += 2) if (data[(y * cv.width + x) * 4 + 3] > 140) pts.push([x, y]);
     if (!pts.length) return;
     const take = Math.floor(N * 0.86);
+    const k = portrait ? 74 : 42, cy = cv.height / 2;
     for (let i = 0; i < take; i++) {
       const [px, py] = pts[Math.floor(r() * pts.length)];
-      const x = (px - 600) / 42, y = -(py - 150) / 42;
-      const sql = px > 780;
+      const x = (px - 600) / k, y = -(py - cy) / k;
+      const sql = portrait ? py > 280 : px > 780;
       w.put(x + gauss(r) * 0.04, y + 4.2 + gauss(r) * 0.04, gauss(r) * 0.25, sql ? PAL.amber : PAL.ivory, 0.7 + r() * 0.4);
     }
   });

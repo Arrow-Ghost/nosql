@@ -781,7 +781,7 @@ export function quiz() {
     const waiting = pending().filter((p) => !fromServer.some((d) => d.id === p.id));
     entries = [...fromServer, ...waiting];
     setMode('api', 'Live · shared', 'tag kv');
-    note(waiting.length ? `${waiting.length} score${waiting.length === 1 ? '' : 's'} waiting to sync from this device.` : 'Scores are stored in MongoDB and shared with everyone, live.');
+    note(waiting.length ? `${waiting.length} score${waiting.length === 1 ? '' : 's'} waiting to sync from this device.` : '');
     if (waiting.length) flushPending();
   }
   async function apiPost(e: Entry) {
@@ -854,7 +854,7 @@ export function quiz() {
         myId = saved.id; myRank = Number(res.rank) || 0; boardTotal = Number(res.total) || boardTotal;
         entries = [saved, ...entries.filter((x) => x.id !== saved.id)];
         apiUp = true;
-        note('Scores are stored in MongoDB and shared with everyone, live.');
+        note('');
       } catch (err: any) {
         if (err?.status === 400) { note(`The server rejected this score: ${err.message}.`); return; }
         writeLS(PENDING, [e, ...pending().filter((x) => x.id !== e.id)]);

@@ -161,13 +161,16 @@ function setupMotion() {
     .fromTo('#cs-card', { rotateX: 20, scale: mob ? 0.8 : 1.05 }, { rotateX: 0, scale: mob ? 0.95 : 1, ease: 'none' }, 0)
     .fromTo('#cs-title', { y: 0 }, { y: -60, ease: 'none' }, 0);
 
-  // advantages: cards stack
-  if (!mob) {
+  // advantages: cards stack. Phones darken instead of fading and blurring: blur is costly on mobile GPUs,
+  // and an unblurred faded card lets the text behind it show through. Tablets keep cards unpinned.
+  const phone = innerWidth <= 760;
+  if (!mob || phone) {
     const cards = $$<HTMLElement>('.scard');
+    const away = phone ? { scale: 0.92, filter: 'brightness(0.4)' } : { scale: 0.9, opacity: 0.35, filter: 'blur(2px)' };
     cards.forEach((c, i) => {
       const nxt = cards[i + 1];
       if (!nxt) return;
-      gsap.to(c, { scale: 0.9, opacity: 0.35, filter: 'blur(2px)', ease: 'none', scrollTrigger: { trigger: nxt, start: 'top bottom', end: 'top 14%', scrub: true } });
+      gsap.to(c, { ...away, ease: 'none', scrollTrigger: { trigger: nxt, start: 'top bottom', end: phone ? 'top 8%' : 'top 14%', scrub: true } });
     });
   }
 

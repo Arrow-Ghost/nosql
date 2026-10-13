@@ -845,6 +845,161 @@ th.newcol, td.newcol { animation: colin 0.6s var(--ease); }
   .jx-tables { grid-template-columns: minmax(0, 1fr); }
   .replicas { grid-template-columns: minmax(0, 1fr); }
 }
+.note:empty { display: none; }
+
+/* ---------- phone: same cinema, recut for a tall narrow screen ---------- */
+@media (max-width: 760px) {
+  :root { --gutter: 20px; --t-h2: clamp(2.6rem, 12.5vw, 3.8rem); --t-lede: 1.35rem; }
+  .grain { opacity: 0.05; }
+  .btn { padding: 10px 13px; }
+
+  /* grids sized by their content would otherwise push past the screen edge */
+  .hero, .def-read, .fin-sticky, .wall, .cmp, .lim, .choose, .poly, .recap, .cons, .schema, .module-map, .sources { grid-template-columns: minmax(0, 1fr); }
+
+  /* hero */
+  .hero { padding-block: 14vh 8vh; }
+  .hero-inner { gap: 22px; }
+  .hero-title .ht-small { font-size: 11.5vw; }
+  .hero-title .ht-big { font-size: 34vw; }
+  .hero-title .ht-big .q { -webkit-text-stroke-width: 1.5px; }
+  .hero-row { gap: 22px; }
+  .hero-team { grid-template-columns: minmax(0, 1fr); flex-basis: 100%; gap: 0; }
+  .hero-team div { padding-block: 7px; }
+
+  /* every tap */
+  .phone-title { top: 11vh; }
+  .phone-rig { margin-top: 22vh; }
+  .qlog { bottom: calc(38px + env(safe-area-inset-bottom, 0px)); }
+  .qlog .panel-body { padding: 10px; }
+  .qlog ol { max-height: 19vh; gap: 6px; }
+
+  /* definition */
+  .def-word { font-size: 23vw; }
+  .def-read { gap: 40px; }
+  .def-para { font-size: 1.75rem; }
+  .def-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .def-facts > div { padding: 16px; }
+  .def-facts .big { font-size: 2.3rem; }
+  .def-facts p { font-size: 0.82rem; }
+
+  /* timeline */
+  .tl-head { margin-bottom: 1vh; }
+  .tl-track { height: 64svh; }
+  .tl-intro { width: 84vw; padding-right: 8vw; }
+  .tl-intro .yr { font-size: 22vw; }
+  .tl-item { width: 80vw; }
+  .tl-item .what { font-size: 0.9rem; }
+
+  /* scale lab: both strategies side by side so the whole lab fits one screen */
+  .scale-sticky { padding-block: 9vh 3vh; gap: 16px; }
+  .scale-top { gap: 14px; }
+  .scale-top > div { gap: 10px !important; }
+  .scale-top .body-copy { font-size: 0.88rem; }
+  .scale-ctl { min-width: 100%; }
+  .scale-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .scale-side { padding: 12px; gap: 10px; min-height: 0; }
+  .scale-side h3 { font-size: 1.55rem; }
+  .scale-side h3 small { font-size: 0.56rem; letter-spacing: 0.06em; }
+  .stage-up, .stage-out { min-height: 170px; }
+  .big-box { zoom: 0.62; }
+  .ceiling { font-size: 0.54rem; }
+  .stage-out { gap: 3px; }
+  .stage-out i { width: 10px; height: 14px; }
+  .stage-out i::after { left: 2px; top: 3px; width: 3px; }
+  .meters { gap: 6px; font-size: 0.6rem; }
+  .meters b { font-size: 0.95rem; }
+  .scale-sticky > .note { font-size: 0.68rem; line-height: 1.5; }
+
+  /* rows vs documents: the device is taller than the screen, so it scrolls instead of pinning */
+  .cs-wrap { height: auto; }
+  .cs-inner { position: relative; top: 0; }
+  .cs-card { border-radius: 18px; padding: 6px; border-width: 2px; }
+  .cs-screen { border-radius: 12px; }
+  .jx-bar .btn-row { width: 100%; }
+  .jx-bar .btn { flex: 1 1 auto; }
+
+  /* families */
+  .fam-step h2 { font-size: 16vw; }
+  .fam-step dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .fam-step dd { margin-bottom: 8px; font-size: 0.9rem; }
+  .fam-demo { height: 500px; }
+
+  /* the cluster: copy on top, console at the bottom, the 3D room in between */
+  .mach-sticky::after { background: linear-gradient(180deg, rgba(10, 12, 15, 0.94) 0%, rgba(10, 12, 15, 0.55) 30%, transparent 42%, transparent 62%, rgba(10, 12, 15, 0.9) 100%); }
+  .mach-copy { top: calc(52px + env(safe-area-inset-top, 0px)); gap: 8px; }
+  .mach-steps { min-height: 8.6em; }
+  .mach-step { gap: 6px; }
+  .mach-step h3 { font-size: 1.9rem; }
+  .mach-step p { font-size: 0.8rem; line-height: 1.45; }
+  .mach-ctl { bottom: calc(38px + env(safe-area-inset-bottom, 0px)); }
+  .mach-ctl .panel-head { padding: 7px 12px; font-size: 0.62rem; }
+  .mach-ctl .panel-body { padding: 10px; gap: 7px; }
+  .mach-ctl .row { gap: 6px; }
+  .mach-ctl .row .field { flex: 1 1 90px; padding: 7px 10px; }
+  .mach-ctl .btn { flex: 1 1 auto; padding: 7px 8px; font-size: 0.62rem; letter-spacing: 0.06em; }
+  .mach-log { height: 4.8em; font-size: 0.64rem; padding: 7px 9px; }
+
+  /* consistency */
+  .rep { padding: 10px 12px; }
+  .ab .tag { justify-self: start; }
+
+  /* SQL vs NoSQL: the table becomes one card per row */
+  .cmp .tbl-wrap { overflow: visible; }
+  .cmp-table { min-width: 0; }
+  .cmp-table thead { display: none; }
+  .cmp-table, .cmp-table tbody { display: block; }
+  .cmp-table tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; padding-block: 18px; border-bottom: 1px solid var(--rule); }
+  .cmp-table tbody th, .cmp-table td { display: block; width: auto; padding: 0; border: 0; }
+  .cmp-table tbody th { grid-column: 1 / -1; }
+  .cmp-table td { font-size: 0.88rem; line-height: 1.45; }
+  .cmp-table td::before { content: 'SQL'; display: block; margin-bottom: 4px; font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; color: var(--ivory); }
+  .cmp-table td:nth-of-type(2)::before { content: 'NoSQL'; color: var(--amber); }
+  .cmp-head .btn { width: 100%; }
+
+  /* advantages: keep the cards stacking on phones */
+  .scard { position: sticky; top: calc(48px + env(safe-area-inset-top, 0px)); margin-bottom: 5vh; padding: 20px; gap: 16px; }
+  .scard h3 { font-size: 2.7rem; margin-block: 10px 12px; }
+  .scard .body-copy { font-size: 0.95rem; }
+  .scard .why { margin-top: 12px; }
+  .scard .vis { min-height: 170px; }
+
+  /* limitations */
+  .flip, .flip-in { min-height: 260px; }
+  .face { padding: 18px; }
+
+  /* applications */
+  .use { padding-block: 5vh; }
+  .deploy a b { font-size: 1.35rem; }
+
+  /* chooser */
+  .ch-q legend { font-size: 1.35rem; }
+  .ch-bars div { grid-template-columns: 7.5em minmax(0, 1fr) 2.2em; }
+
+  /* polyglot: the diagram keeps a readable size and pans sideways */
+  .poly-stage > .panel:first-child .panel-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .poly-svg { min-width: 600px; }
+
+  /* recap and quiz */
+  .rrow { grid-template-columns: 2.4rem minmax(0, 1fr); gap: 6px 14px; padding-block: 20px; }
+  .quiz-top { font-size: 0.62rem; gap: 6px 12px; }
+  .quiz-q { font-size: 1.45rem; }
+  .qz-row .btn, .quiz-foot .btn { flex: 1 1 100%; padding-block: 13px; }
+  .quiz-opts button { padding: 13px 14px; font-size: 0.92rem; }
+  .qz-big { font-size: 5rem; }
+  .lb-list { max-height: 52vh; }
+
+  /* finale */
+  .finale { min-height: 170vh; }
+  .fin-sticky { padding-block: 0 9vh; }
+  .fin-title { font-size: 19vw; }
+  .mm b { font-size: 1.35rem; }
+  .colophon .btn { width: 100%; }
+
+  /* part marquees */
+  .marq { padding-block: 4vh; }
+  .marq span { font-size: 18vw; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .def-word .w1, .def-word .w2 { display: none; }
   .def-word .w3 { position: static; }
