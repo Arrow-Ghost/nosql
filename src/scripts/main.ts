@@ -161,12 +161,12 @@ function setupMotion() {
     .fromTo('#cs-card', { rotateX: 20, scale: mob ? 0.8 : 1.05 }, { rotateX: 0, scale: mob ? 0.95 : 1, ease: 'none' }, 0)
     .fromTo('#cs-title', { y: 0 }, { y: -60, ease: 'none' }, 0);
 
-  // advantages: cards stack. Phones darken instead of fading and blurring: blur is costly on mobile GPUs,
-  // and an unblurred faded card lets the text behind it show through. Tablets keep cards unpinned.
+  // advantages: cards stack. On phones the covered card only shrinks a little: darkening or fading it
+  // made the text unreadable while the next card slid up. Opaque card backgrounds keep it clean.
   const phone = innerWidth <= 760;
   if (!mob || phone) {
     const cards = $$<HTMLElement>('.scard');
-    const away = phone ? { scale: 0.92, filter: 'brightness(0.4)' } : { scale: 0.9, opacity: 0.35, filter: 'blur(2px)' };
+    const away = phone ? { scale: 0.95 } : { scale: 0.9, opacity: 0.35, filter: 'blur(2px)' };
     cards.forEach((c, i) => {
       const nxt = cards[i + 1];
       if (!nxt) return;

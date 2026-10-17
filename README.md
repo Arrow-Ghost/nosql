@@ -200,7 +200,7 @@ Point at the four fact boxes: **2009** (when the name caught on), **4** (the fou
 (Fun detail if someone asks: **the leaderboard itself is stored in MongoDB**, a NoSQL database, behind a small API. And the server works out the score from your answers, so you can't fake a 7/7.)
 
 ### 20 · Thank you
-**On screen:** the dots spell **NOT ONLY SQL**, and the Module 5 map shows Team 9 as "You are here".
+**On screen:** the dots spell **NOT ONLY SQL** behind "Thank you. Questions?"
 
 **Say:**
 > "Thank you. Our main message: NoSQL is not a replacement for SQL. It's a set of tools for scale, variety and speed. Next, Team 10 goes deeper into CAP and ACID versus BASE, and Team 11 into NoSQL data modelling. We're happy to take questions."

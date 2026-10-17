@@ -636,7 +636,13 @@ th.newcol, td.newcol { animation: colin 0.6s var(--ease); }
 .lim-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .flip { perspective: 1200px; min-height: 300px; border: 0; padding: 0; background: transparent; text-align: left; }
 .flip-in { position: relative; width: 100%; height: 100%; min-height: 300px; transform-style: preserve-3d; transition: transform 0.8s var(--ease); }
-.flip:hover .flip-in, .flip.on .flip-in, .flip:focus-visible .flip-in { transform: rotateY(180deg); }
+.flip { -webkit-tap-highlight-color: transparent; touch-action: manipulation; color: inherit; font: inherit; width: 100%; }
+.flip.on .flip-in, .flip:focus-visible .flip-in { transform: rotateY(180deg); }
+/* hover flips only with a real mouse; on touch screens :hover sticks after a tap and blocks flipping back */
+@media (hover: hover) and (pointer: fine) { .flip:hover .flip-in { transform: rotateY(180deg); } }
+.flip-in { -webkit-transform-style: preserve-3d; }
+.face { -webkit-transform: translateZ(0); }
+.face.back { -webkit-transform: rotateY(180deg); }
 .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 22px; display: grid; align-content: space-between; border-radius: 4px; border: 1px solid var(--rule-2); }
 .face.front { background: linear-gradient(160deg, #1d232a, #121519); }
 .face.back { background: linear-gradient(160deg, #241a12, #15110d); border-color: rgba(255, 138, 31, 0.45); transform: rotateY(180deg); }
@@ -957,14 +963,14 @@ th.newcol, td.newcol { animation: colin 0.6s var(--ease); }
   .cmp-head .btn { width: 100%; }
 
   /* advantages: keep the cards stacking on phones */
-  .scard { position: sticky; top: calc(48px + env(safe-area-inset-top, 0px)); margin-bottom: 5vh; padding: 20px; gap: 16px; }
+  .scard { position: sticky; top: calc(48px + env(safe-area-inset-top, 0px)); margin-bottom: 5vh; padding: 20px; gap: 16px; background: #181d23; box-shadow: 0 -6px 18px -8px rgba(0, 0, 0, 0.6); }
   .scard h3 { font-size: 2.7rem; margin-block: 10px 12px; }
   .scard .body-copy { font-size: 0.95rem; }
   .scard .why { margin-top: 12px; }
   .scard .vis { min-height: 170px; }
 
   /* limitations */
-  .flip, .flip-in { min-height: 260px; }
+  .flip, .flip-in { min-height: 300px; }
   .face { padding: 18px; }
 
   /* applications */
